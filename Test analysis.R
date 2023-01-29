@@ -2,7 +2,8 @@ library(dplyr)
 library(tidyverse)
 library(psych)
 library(ggplot2)
-team_data<-read.csv("/Users/rockchen/Desktop/Research R assessment/test_data.csv")
+urlfile="https://raw.githubusercontent.com/ShuhanChenrock/R-assessment/master/test_data.csv"
+team_data<-read_csv(url(urlfile))
 print(team_data)
 
 #Q1
