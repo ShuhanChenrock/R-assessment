@@ -22,6 +22,7 @@ composite_scale_task <-aggregate(
   cbind(task_interdepdence_1,task_interdepdence_2_r,task_interdepdence_3)~id,
   data=recoded_data, FUN=mean
 )
+
 #Q3
 team_cohesion<-
   rowSums(
@@ -35,9 +36,12 @@ team_performance<-select(recoded_data,team_performance)
 df <-tibble(team_cohesion,task_interdepdence,team_performance)
   
 describe(df)
-
+correlation <- cor(df)
 #Q4
+model<- lm(
+  team_performance~team_cohesion+task_interdepdence+team_cohesion*task_interdepdence,
+  data=df)
+#Q5
 ggplot(
   data=recoded_data,aes(x=team_cohesion,y=task_interdepdence)
   )+geom_point(size=2,shape=23)+geom_smooth(method=lm)
-
